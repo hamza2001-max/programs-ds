@@ -30,6 +30,7 @@ public:
     void insertNode(int);
     void traverseNodes();
     void deleteNode(int);
+    void insertAtStart(int);
 };
 
 void LinkedList::insertNode(int data)
@@ -50,6 +51,24 @@ void LinkedList::insertNode(int data)
     }
     temp->next = newNode;
     newNode->next = head;
+}
+
+void LinkedList::insertAtStart(int data)
+{
+    Node *newNode = new Node(data);
+    if (head == NULL)
+    {
+        head = newNode;
+        return;
+    }
+    Node *temp = head;
+    while (temp->next != head)
+    {
+        temp = temp->next;
+    }
+    newNode->next = head;
+    temp->next = newNode;
+    head = newNode;
 }
 
 void LinkedList::traverseNodes()
@@ -102,6 +121,8 @@ int main()
     l1.insertNode(2);
     l1.traverseNodes();
     l1.deleteNode(4);
+    l1.traverseNodes();
+    l1.insertAtStart(55);
     l1.traverseNodes();
     return 0;
 }
